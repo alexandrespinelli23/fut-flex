@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrinho de Compras — FutFlex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="website icon" href="img/Logo.png">
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column; margin: 0; background-color: #f4f4f4;">
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img class="brand-logo" src="img/Logo.png" alt="FutFlex">
+      <span>FUT<em>FLEX</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="produtos.html">Produtos</a>
+      <a href="produtos.html?categoria=brasil">Brasil</a>
+      <a href="produtos.html?categoria=europa">Europa</a>
+      <a href="produtos.html?categoria=selecoes">Seleções</a>
+    </nav>
+    <div class="header-actions">
+      <a href="carrinho.html" class="icon-btn" aria-label="Carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <a href="login.html" class="icon-btn" id="account-link" aria-label="Minha conta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="burger" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div style="flex: 1;">
+  <section class="section" style="padding: 40px 0;">
+    <div class="container" style="max-width:820px;">
+      <div class="cart-wrap">
+        <h2>Carrinho de compras</h2>
+        <div id="cart-items"></div>
+
+        <div id="cart-empty" class="cart-empty" style="display:none;">
+          <img class="status-icon" src="img/126510.png" alt="">
+          <p>Seu carrinho está vazio.</p>
+          <a href="produtos.html" class="btn btn-primary" style="margin-top:14px;">Ver produtos</a>
+        </div>
+
+        <div id="cart-summary-wrap">
+          <div class="cart-summary">
+            <div class="total">Total: <span id="cart-total">R$ 0,00</span></div>
+            <a href="checkout.html" class="btn btn-primary" id="btn-checkout">Finalizar compra</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/products.js"></script>
+<script src="js/script.js"></script>
+<script src="js/footer.js"></script>
+<script>
+  function renderCart() {
+    const cart = getCart();
+    const wrap = document.getElementById("cart-items");
+    const empty = document.getElementById("cart-empty");
+    const summary = document.getElementById("cart-summary-wrap");
+
+    if (cart.length === 0) {
+      wrap.innerHTML = "";
+      empty.style.display = "block";
+      summary.style.display = "none";
+      return;
+    }
+    empty.style.display = "none";
+    summary.style.display = "block";
+
+    wrap.innerHTML = cart.map((item, index) => {
+      let imgSrc = item.image || (item.images && item.images.length > 0 ? item.images[0] : null);
+
+      if (!imgSrc && typeof getProductById === "function" && item.id) {
+        const prod = getProductById(item.id);
+        if (prod && prod.images && prod.images.length > 0) {
+          imgSrc = prod.images[0];
+        }
+      }
+      
+      const imageHtml = imgSrc 
+        ? `<img src="${imgSrc}" alt="${item.name}" style="width: 72px; height: 72px; object-fit: cover; border-radius: 8px; flex-shrink: 0;">`
+        : `<div class="ph" data-label="foto" style="width: 72px; height: 72px; flex-shrink: 0;"></div>`;
+
+      return `
+        <div class="cart-item" style="display: flex; align-items: center; gap: 16px;">
+          ${imageHtml}
+          <div class="cart-item-info" style="flex: 1;">
+            <h3>${item.name}</h3>
+            <div class="cart-item-meta">
+              <span>Tamanho: <strong>${item.size}</strong></span>
+              <span>Quantidade: <strong>${item.qty}</strong></span>
+              <span>Unid.: <strong>R$ ${formatPrice(item.price)}</strong></span>
+            </div>
+          </div>
+          <div class="cart-item-actions">
+            <div class="cart-item-total">R$ ${formatPrice(item.price * item.qty)}</div>
+            <button class="icon-remove" data-index="${index}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
+              Remover
+            </button>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    document.getElementById("cart-total").textContent = "R$ " + formatPrice(cartTotalValue());
+
+    document.querySelectorAll(".icon-remove").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        removeFromCart(Number(btn.dataset.index));
+        renderCart();
+        showToast("Item removido do carrinho.");
+      });
+    });
+  }
+
+  if (typeof onProductsChange === "function") {
+    onProductsChange(renderCart);
+  } else {
+    renderCart();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+/* ==========================================================================
+   FutFlex — Catálogo de exemplo (usado só na importação inicial pro Firestore)
+   ========================================================================== */
+
+const SEED_PRODUCTS = [
+  { name: "Camisa Palmeiras Away 26/27", category: "brasil", price: 299.99, season: "26/27", tag: "Lançamento", launch: true, bestseller: false },
+  { name: "Camisa Corinthians Home 26/27", category: "brasil", price: 299.99, season: "26/27", tag: "Lançamento", launch: true, bestseller: false },
+  { name: "Camisa Milan 06/07 Away", category: "europa", price: 259.99, oldPrice: 299.99, season: "06/07", tag: "Retrô", launch: false, bestseller: false },
+  { name: "Camisa Real Madrid Home 26/27", category: "europa", price: 299.99, season: "26/27", tag: "Lançamento", launch: true, bestseller: false },
+  { name: "Seleção Alemanha Treino 26/27 - Torcedor", category: "selecoes", price: 299.99, season: "26/27", tag: "Lançamento", launch: true, bestseller: false },
+  { name: "Camisa Sporting 01/03 Retrô - Verde e Branco", category: "europa", price: 159.99, season: "01/03", tag: "Retrô", launch: true, bestseller: false },
+  { name: "Camisa Palmeiras 25/26 Edição Mundial de Clubes", category: "brasil", price: 299.99, season: "25/26", tag: "Edição especial", launch: true, bestseller: false },
+  { name: "CA Barcelona 10/11 Home - Azul e Grená", category: "europa", price: 299.99, season: "10/11", tag: "Retrô", launch: false, bestseller: true },
+  { name: "Real Madrid 17/18 3rd Manga Longa - Azul", category: "europa", price: 159.99, oldPrice: 199.99, season: "17/18", tag: "Promoção", launch: false, bestseller: true },
+  { name: "Liverpool 19/20 Home - Vermelha", category: "europa", price: 299.99, season: "19/20", tag: "Mais vendido", launch: false, bestseller: true },
+  { name: "Camisa Celta de Vigo Home", category: "europa", price: 299.99, season: "25/26", tag: null, launch: false, bestseller: false },
+  { name: "Arsenal O2 Retrô", category: "europa", price: 299.99, season: "05/06", tag: "Retrô", launch: false, bestseller: false },
+  { name: "Notcs FC Home", category: "europa", price: 299.99, season: "25/26", tag: null, launch: false, bestseller: false },
+  { name: "Parmalat Retrô Home", category: "europa", price: 299.99, season: "99/00", tag: "Retrô", launch: false, bestseller: false },
+  { name: "Uber Racing Home", category: "selecoes", price: 299.99, season: "25/26", tag: null, launch: false, bestseller: false },
+  { name: "Real Madrid Emirates Fly Better", category: "europa", price: 299.99, season: "25/26", tag: null, launch: false, bestseller: false },
+  { name: "Benq Siemens Retrô", category: "europa", price: 299.99, season: "07/08", tag: "Retrô", launch: false, bestseller: false },
+  { name: "Seleção Argentina Away", category: "selecoes", price: 299.99, season: "26/27", tag: null, launch: false, bestseller: false },
+  { name: "Corinthians Home Retrô", category: "brasil", price: 299.99, season: "00/01", tag: "Retrô", launch: false, bestseller: false },
+  { name: "Botafogo Away Pari Match", category: "brasil", price: 299.99, season: "25/26", tag: null, launch: false, bestseller: false },
+  { name: "Seleção Itália Treino", category: "selecoes", price: 299.99, season: "26/27", tag: null, launch: false, bestseller: false },
+  { name: "Seleção Marrocos Home", category: "selecoes", price: 299.99, season: "26/27", tag: null, launch: false, bestseller: false },
+  { name: "Manchester City Etihad Home", category: "europa", price: 299.99, season: "25/26", tag: null, launch: false, bestseller: false },
+  { name: "Al Nassr Savvy Away", category: "europa", price: 299.99, season: "25/26", tag: null, launch: false, bestseller: false },
+  { name: "Ajax Home Retrô", category: "europa", price: 299.99, season: "95/96", tag: "Retrô", launch: false, bestseller: false },
+  { name: "CA Barcelona 10/11 Away - Grená", category: "europa", price: 299.99, season: "10/11", tag: "Retrô", launch: false, bestseller: false },
+  { name: "Flamengo Home 26/27", category: "brasil", price: 299.99, season: "26/27", tag: "Lançamento", launch: true, bestseller: false },
+  { name: "São Paulo FC Home 26/27", category: "brasil", price: 299.99, season: "26/27", tag: "Lançamento", launch: true, bestseller: false },
+].map((p) => ({
+  sizes: ["P", "M", "G", "GG"],
+  images: [],
+  stock: 40,
+  status: "ativo",
+  oldPrice: null,
+  tag: null,
+  sold: 0,
+  ...p,
+}));

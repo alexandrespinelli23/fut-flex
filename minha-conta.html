@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Pedidos — FutFlex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/minha-conta.css">
+<link rel="website icon" href="img/Logo.png">
+</head>
+<body class="account-page">
+
+  <!-- Cabeçalho -->
+  <header class="account-header">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img class="brand-logo" src="img/Logo.png" alt="FutFlex">
+        <span>FUT<em>FLEX</em></span>
+      </a>
+      <div class="account-header-actions">
+        <a href="index.html" class="account-back-link">Voltar para a Loja</a>
+        <img src="img/foto.perfil.jpg" alt="Perfil" class="account-avatar">
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="account-main">
+    <div class="account-top-bar">
+      <div id="welcome-user" style="font-size: 1.1rem; color: #64748b; margin-bottom: 6px; font-weight: 500;"></div>
+      <h2 class="account-title">Meus Pedidos</h2>
+      <button type="button" id="btn-logout-account" class="btn-logout-account">Sair da conta</button>
+    </div>
+
+    <div id="my-orders-list">
+      <p class="account-loading">Carregando seus pedidos...</p>
+    </div>
+  </main>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+
+    auth.onAuthStateChanged((user) => {
+    if (!user) {
+      location.href = "login.html";
+      return;
+    }
+
+    // Pega o nome antes do '@' do e-mail ou usa o displayName se houver
+    const nomeEmail = user.email ? user.email.split('@')[0] : 'Cliente';
+    const nomeFormatado = nomeEmail.charAt(0).toUpperCase() + nomeEmail.slice(1);
+
+    // Exibe a mensagem de boas-vindas personalizada
+    const welcomeEl = document.getElementById("welcome-user");
+    if (welcomeEl) {
+      welcomeEl.textContent = `Olá, ${nomeFormatado}! Seja bem-vindo(a).`;
+    }
+
+    // Botão de Sair
+    document.getElementById("btn-logout-account").addEventListener("click", () => {
+      auth.signOut().then(() => location.href = "index.html");
+    });
+
+    // ... restante do código que busca os pedidos ...
+  });
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("btn-logout-account").addEventListener("click", () => {
+        auth.signOut().then(() => location.href = "index.html");
+      });
+
+      db.collection("orders")
+        .where("uid", "==", user.uid)
+        .onSnapshot((snapshot) => {
+          const container = document.getElementById("my-orders-list");
+
+          if (snapshot.empty) {
+            container.innerHTML = `
+              <div class="empty-orders-box">
+                <p>Você ainda não realizou nenhum pedido na loja.</p>
+                <a href="produtos.html" class="btn btn-primary">Ver produtos</a>
+              </div>
+            `;
+            return;
+          }
+
+          const statusMap = {
+            aguardando: "Aguardando liberação do dono",
+            processando: "Processando",
+            enviado: "Enviado",
+            entregue: "Entregue",
+            cancelado: "Cancelado"
+          };
+
+          container.innerHTML = snapshot.docs.map((doc) => {
+            const o = doc.data();
+            const statusClass = o.status || "processando";
+            const statusText = statusMap[statusClass] || statusClass;
+            const valorFormatado = typeof formatPrice === "function"
+              ? formatPrice(o.valor || 0)
+              : Number(o.valor || 0).toFixed(2).replace(".", ",");
+
+            return `
+              <div class="order-card">
+                <div class="order-card-header">
+                  <strong class="order-id">PEDIDO #${doc.id.slice(-6).toUpperCase()}</strong>
+                  <span class="order-status-badge ${statusClass}">● ${statusText}</span>
+                </div>
+                <p class="order-meta"><strong>Data:</strong> ${o.data || "—"} &bull; <strong>Pagamento:</strong> ${o.pagamento || "Cartão"}</p>
+                <p class="order-items"><strong>Itens:</strong> ${o.resumo || "—"}</p>
+                <div class="order-card-footer">
+                  <span class="order-total-label">Valor Total:</span>
+                  <strong class="order-total-value">R$ ${valorFormatado}</strong>
+                </div>
+              </div>
+            `;
+          }).join("");
+        });
+    });
+  </script>
+</body>
+</html>

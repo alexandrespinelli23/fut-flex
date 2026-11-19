@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel do Vendedor — FutFlex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="website icon" href="img/Logo.png">
+</head>
+<body class="admin-body">
+
+<div class="admin-topbar">
+  <div class="container">
+    <a href="index.html" class="brand" style="font-size:.95rem;">
+      <img class="brand-logo" src="img/Logo.png" alt="FutFlex">
+      <span>FUT<em>FLEX</em></span><span class="badge-role">Vendedor</span>
+    </a>
+    <div class="admin-topbar-links">
+      <span id="seller-name" style="color:#9db3cf; font-size:.8rem;">Olá, Vendedor</span>
+      <a href="index.html">Ver loja</a>
+      <a href="index.html" id="" class="logout">Sair</a>
+    </div>
+  </div>
+</div>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <a href="#" class="nav-item active" data-section="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+      Visão geral
+    </a>
+    <a href="#" class="nav-item" data-section="orders">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5M9 13h6M9 17h6"/></svg>
+      Pedidos
+    </a>
+    <a href="#" class="nav-item" data-section="products">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 7 9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7M12 11v10"/></svg>
+      Mais vendidos
+    </a>
+    <a href="#" class="nav-item" data-section="manage">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.2" fill="currentColor" stroke="none"/></svg>
+      Gerenciar camisas
+    </a>
+    <a href="#" class="nav-item" data-section="stock">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05M12 22.08V12"/></svg>
+      Estoque
+    </a>
+  </aside>
+
+  <main class="admin-main">
+
+    <!-- ================= VISÃO GERAL ================= -->
+    <section class="admin-section active" id="section-overview">
+      <h2 class="admin-section-title">Visão geral</h2>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Faturamento (mês)</span>
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          </div>
+          <div class="stat-value" id="stat-revenue">R$ 0,00</div>
+          <span class="stat-delta">Pedidos não cancelados</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Pedidos</span>
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/></svg></div>
+          </div>
+          <div class="stat-value" id="stat-orders">0</div>
+          <span class="stat-delta up" id="stat-orders-delta">Nenhum pedido ainda</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Ticket médio</span>
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          </div>
+          <div class="stat-value" id="stat-ticket">R$ 0,00</div>
+          <span class="stat-delta">Faturamento ÷ pedidos</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Produtos ativos</span>
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 7 9-4 9 4-9 4-9-4Z"/></svg></div>
+          </div>
+          <div class="stat-value" id="stat-products">0</div>
+          <span class="stat-delta" id="stat-products-delta">no catálogo</span>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="panel-card">
+          <h3>Vendas dos últimos 7 dias</h3>
+          <div class="chart-row" id="chart-row"></div>
+        </div>
+
+        <div class="panel-card">
+          <h3>Estoque baixo</h3>
+          <div id="low-stock-list"></div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="flex-between" style="margin-bottom:16px;">
+          <h3 style="margin:0;">Pedidos recentes</h3>
+          <a href="#" class="btn btn-outline btn-sm" style="color:var(--navy); border-color:var(--navy);" data-goto="orders">Ver todos</a>
+        </div>
+        <div class="table-scroll">
+          <table class="admin-table" id="recent-orders-table"></table>
+        </div>
+      </div>
+    </section>
+
+   <!-- ================= PEDIDOS ================= -->
+    <section class="admin-section" id="section-orders">
+      <div class="flex-between" style="margin-bottom:18px; flex-wrap:wrap; gap:12px;">
+        <h2 class="admin-section-title" style="margin:0;">Pedidos</h2>
+        <button class="btn btn-danger btn-sm" id="btn-reset-sales">Zerar todas as vendas</button>
+      </div>
+
+      <div class="panel-card" style="margin-bottom: 20px; border-left: 4px solid #f59e0b;">
+        <div class="flex-between" style="margin-bottom: 12px;">
+          <h3 style="margin:0; color:var(--navy);">Pagamentos Aguardando Liberação</h3>
+          <span id="pending-payments-count" class="status-badge processando">0 pendente(s)</span>
+        </div>
+        <div id="pending-payments-list">
+          <p style="color:var(--text-muted); font-size:.88rem; margin:0;">Nenhum pagamento pendente no momento.</p>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="admin-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="order-search" placeholder="Buscar por cliente, produto ou número do pedido">
+        </div>
+        <div class="filter-tabs" id="status-filters">
+          <button class="filter-tab active" data-status="">Todos</button>
+          <button class="filter-tab" data-status="aguardando">Aguardando liberação</button>
+          <button class="filter-tab" data-status="processando">Processando</button>
+          <button class="filter-tab" data-status="enviado">Enviado</button>
+          <button class="filter-tab" data-status="entregue">Entregue</button>
+          <button class="filter-tab" data-status="cancelado">Cancelado</button>
+        </div>
+        <div class="table-scroll">
+          <table class="admin-table" id="orders-table"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MAIS VENDIDOS ================= -->
+    <section class="admin-section" id="section-products">
+      <h2 class="admin-section-title">Produtos mais vendidos</h2>
+      <div class="panel-card">
+        <div class="table-scroll">
+          <table class="admin-table" id="top-products-table"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GERENCIAR CAMISAS ================= -->
+    <section class="admin-section" id="section-manage">
+      <div class="flex-between" style="margin-bottom:18px; flex-wrap:wrap; gap:12px;">
+        <h2 class="admin-section-title" style="margin:0;">Gerenciar camisas</h2>
+        <button class="btn btn-primary btn-sm" id="btn-open-add">+ Adicionar camisa</button>
+      </div>
+
+      <div class="panel-card" id="empty-catalog-card" style="display:none; text-align:center; padding:44px 20px;">
+        <div class="ph round" data-label="" style="width:64px; height:64px; margin:0 auto 16px;"></div>
+        <h3 style="margin-bottom:8px;">Seu catálogo ainda está vazio</h3>
+        <p style="color:var(--text-muted); font-size:.85rem; margin-bottom:22px;">Adicione sua primeira camisa manualmente, ou importe um catálogo de exemplo com 28 camisas para começar rápido (dá pra editar ou excluir depois).</p>
+        <button class="btn btn-outline" style="color:var(--navy); border-color:var(--navy);" id="btn-import-seed">Importar catálogo de exemplo (28 camisas)</button>
+      </div>
+
+      <div class="panel-card">
+        <div class="admin-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="manage-search" placeholder="Buscar camisa por nome">
+        </div>
+        <div class="filter-tabs" id="manage-filters">
+          <button class="filter-tab active" data-status="">Todas</button>
+          <button class="filter-tab" data-status="ativo">Ativas</button>
+          <button class="filter-tab" data-status="suspenso">Suspensas</button>
+        </div>
+        <div class="table-scroll">
+          <table class="admin-table" id="manage-table"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ESTOQUE ================= -->
+    <section class="admin-section" id="section-stock">
+      <h2 class="admin-section-title">Controle de estoque</h2>
+      <div class="panel-card">
+        <div class="table-scroll">
+          <table class="admin-table" id="stock-table"></table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ================= MODAL: ADICIONAR / EDITAR CAMISA ================= -->
+<div class="modal-overlay" id="product-modal-overlay">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="modal-title">Adicionar camisa</h3>
+      <button type="button" class="modal-close" id="modal-close" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <form id="product-form">
+      <input type="hidden" id="pf-id">
+
+      <div class="field full">
+        <label>Nome da camisa</label>
+        <input type="text" id="pf-name" placeholder="Ex: Camisa Grêmio Home 26/27" required>
+      </div>
+
+      <div class="pf-grid">
+        <div class="field">
+          <label>Temporada / Ano</label>
+          <input type="text" id="pf-season" placeholder="Ex: 26/27" required>
+        </div>
+        <div class="field">
+          <label>Categoria</label>
+          <select id="pf-category" required>
+            <option value="brasil">Brasil</option>
+            <option value="europa">Europa</option>
+            <option value="selecoes">Seleções</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preço (R$)</label>
+          <input type="number" id="pf-price" min="0" step="0.01" placeholder="299.99" required>
+        </div>
+        <div class="field">
+          <label>Quantidade em estoque</label>
+          <input type="number" id="pf-stock" min="0" step="1" placeholder="40" required>
+        </div>
+      </div>
+
+      <div class="field full">
+        <label>Tamanhos disponíveis</label>
+        <div class="size-check-row">
+          <label class="size-check"><input type="checkbox" value="P"> P</label>
+          <label class="size-check"><input type="checkbox" value="M"> M</label>
+          <label class="size-check"><input type="checkbox" value="G"> G</label>
+          <label class="size-check"><input type="checkbox" value="GG"> GG</label>
+        </div>
+        <p class="form-error" id="pf-size-error">Selecione ao menos um tamanho.</p>
+      </div>
+
+      <div class="field full">
+        <label>Fotos do produto (mínimo 4)</label>
+        <label class="upload-drop" for="pf-images">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg>
+          Clique para enviar fotos ou arraste aqui
+        </label>
+        <input type="file" id="pf-images" accept="image/*" multiple style="display:none;">
+        <div class="image-preview-grid" id="image-preview-grid"></div>
+        <p class="form-error" id="pf-image-error">Envie pelo menos 4 fotos do produto.</p>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="btn-cancel-form" style="color:var(--navy); border-color:var(--navy);">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="btn-save-product">Salvar camisa</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= MODAL: CONFIRMAÇÃO DE EXCLUSÃO ================= -->
+<div class="modal-overlay" id="confirm-modal-overlay">
+  <div class="modal-box modal-box-sm">
+    <h3 style="margin-bottom:10px;">Excluir permanentemente?</h3>
+    <p style="color:var(--text-muted); font-size:.85rem; margin-bottom:22px;">
+      Essa ação não pode ser desfeita. A camisa <strong id="confirm-product-name"></strong> será removida definitivamente da loja e do painel.
+    </p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-outline" id="btn-cancel-delete" style="color:var(--navy); border-color:var(--navy);">Cancelar</button>
+      <button type="button" class="btn btn-danger" id="btn-confirm-delete">Excluir para sempre</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL: ZERAR VENDAS ================= -->
+<div class="modal-overlay" id="reset-modal-overlay">
+  <div class="modal-box modal-box-sm">
+    <h3 style="margin-bottom:10px;">Zerar todas as vendas?</h3>
+    <p style="color:var(--text-muted); font-size:.95rem; margin-bottom:22px;">
+      Isso apaga <strong>todos os pedidos</strong> e zera a contagem de vendas de cada camisa. Faturamento, ranking de mais vendidos e gráfico voltam a zero. Não dá para desfazer.
+    </p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-outline" id="btn-cancel-reset" style="color:var(--navy); border-color:var(--navy);">Cancelar</button>
+      <button type="button" class="btn btn-danger" id="btn-confirm-reset">Zerar tudo</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/seed-data.js"></script>
+<script src="js/products.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/script.js"></script>
+<script>
+  /* ---------- Acesso restrito (Firebase Auth + cargo de vendedor) ---------- */
+  let unsubOrders = null;
+  auth.onAuthStateChanged(async (user) => {
+    if (!user) {
+      location.href = "index.html";
+      return;
+    }
+    let userDoc;
+    try {
+      userDoc = await db.collection("users").doc(user.uid).get();
+    } catch (err) {
+      console.error(err);
+      location.href = "index.html";
+      return;
+    }
+    if (!userDoc.exists || userDoc.data().role !== "vendedor") {
+      await auth.signOut();
+      location.href = "index.html";
+      return;
+    }
+    document.getElementById("seller-name").textContent = "Olá, " + (userDoc.data().name || user.email);
+    initDashboard();
+  });
+
+  document.querySelector(".logout")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (unsubOrders) unsubOrders();
+    auth.signOut().then(() => location.href = "index.html");
+  });
+
+  function initDashboard() {
+    /* ---------- Navegação entre seções ---------- */
+    document.querySelectorAll(".admin-sidebar .nav-item").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        goToSection(link.dataset.section);
+      });
+    });
+    document.querySelectorAll("[data-goto]").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        goToSection(link.dataset.goto);
+      });
+    });
+
+    function goToSection(name) {
+      document.querySelectorAll(".admin-sidebar .nav-item").forEach((l) => l.classList.toggle("active", l.dataset.section === name));
+      document.querySelectorAll(".admin-section").forEach((s) => s.classList.toggle("active", s.id === "section-" + name));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    const STATUS_LABELS = {
+      aguardando: "Aguardando liberação",
+      processando: "Processando",
+      enviado: "Enviado",
+      entregue: "Entregue",
+      cancelado: "Cancelado"
+    };
+
+    function renderWeeklyChart() {
+      const dias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+      const days = [];
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date();
+        d.setHours(0, 0, 0, 0);
+        d.setDate(d.getDate() - i);
+        days.push({ date: d, label: dias[d.getDay()], value: 0 });
+      }
+      CURRENT_ORDERS.forEach((o) => {
+        if (o.status === "cancelado") return;
+        const t = o.createdAt && o.createdAt.toDate ? o.createdAt.toDate() : new Date();
+        const slot = days.find((d) => d.date.toDateString() === t.toDateString());
+        if (slot) slot.value += o.valor || 0;
+      });
+      const max = Math.max(...days.map((d) => d.value), 1);
+      document.getElementById("chart-row").innerHTML = days.map((d) => `
+        <div class="chart-bar-wrap">
+          <span class="chart-value">${d.value ? "R$ " + Math.round(d.value) : ""}</span>
+          <div class="chart-bar" style="height:${Math.max((d.value / max) * 100, 2)}%;"></div>
+          <span class="chart-label">${d.label}</span>
+        </div>
+      `).join("");
+    }
+
+    function adminThumb(p) {
+      return p.images && p.images.length
+        ? `<img src="${p.images[0]}" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;">`
+        : `<div class="ph" data-label=""></div>`;
+    }
+
+    function renderTopProducts() {
+      const rows = getAllProducts().filter((p) => (p.sold || 0) > 0).sort((a, b) => b.sold - a.sold).slice(0, 10);
+      document.getElementById("top-products-table").innerHTML = `
+        <thead><tr><th>#</th><th>Produto</th><th>Categoria</th><th>Unid. vendidas</th><th>Receita</th></tr></thead>
+        <tbody>${rows.map((p, i) => `
+          <tr>
+            <td><strong>${i + 1}º</strong></td>
+            <td><div class="cell-flex">${adminThumb(p)}<span>${p.name}</span></div></td>
+            <td>${CATEGORY_LABELS[p.category]}</td>
+            <td>${p.sold}</td>
+            <td>R$ ${formatPrice(p.sold * p.price)}</td>
+          </tr>
+        `).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:26px;">Nenhuma venda registrada ainda.</td></tr>`}</tbody>
+      `;
+    }
+
+    function renderLowStockList() {
+      const low = getAllProducts()
+        .filter((p) => p.status === "ativo" && p.stock <= 5)
+        .sort((a, b) => a.stock - b.stock)
+        .slice(0, 6);
+      const wrap = document.getElementById("low-stock-list");
+      if (low.length === 0) {
+        wrap.innerHTML = `<p style="color:var(--text-muted); font-size:.82rem; padding:8px 0;">Nenhum produto com estoque baixo no momento.</p>`;
+        return;
+      }
+      wrap.innerHTML = low.map((p) => `
+        <div class="admin-table" style="display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eef1f6;">
+          <div class="cell-flex">
+            ${adminThumb(p)}
+            <span style="font-size:.8rem; font-weight:600; max-width:150px;">${p.name}</span>
+          </div>
+          <span class="stock-pill">${p.stock} un.</span>
+        </div>
+      `).join("");
+    }
+
+    function renderStockTable() {
+      const all = getAllProducts();
+      document.getElementById("stock-table").innerHTML = `
+        <thead><tr><th>Produto</th><th>Categoria</th><th>Preço</th><th>Status</th><th>Estoque</th></tr></thead>
+        <tbody>${all.map((p) => `
+          <tr>
+            <td><div class="cell-flex">${adminThumb(p)}<span>${p.name}</span></div></td>
+            <td>${CATEGORY_LABELS[p.category]}</td>
+            <td>R$ ${formatPrice(p.price)}</td>
+            <td><span class="status-badge ${p.status}">${p.status === "ativo" ? "Ativa" : "Suspensa"}</span></td>
+            <td>${p.stock <= 5 ? `<span class="stock-pill">${p.stock} un.</span>` : `${p.stock} un.`}</td>
+          </tr>
+        `).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:26px;">Nenhuma camisa cadastrada ainda.</td></tr>`}</tbody>
+      `;
+    }
+
+    db.collection("payment_approvals")
+      .where("status", "==", "aguardando")
+      .onSnapshot((snapshot) => {
+        const container = document.getElementById("pending-payments-list");
+        const badge = document.getElementById("pending-payments-count");
+        if (!container) return;
+
+        if (badge) badge.textContent = `${snapshot.size} pendente(s)`;
+
+        if (snapshot.empty) {
+          container.innerHTML = `<p style="color:var(--text-muted); font-size:.88rem; margin:0;">Nenhum pagamento pendente no momento.</p>`;
+          return;
+        }
+
+        container.innerHTML = snapshot.docs.map((doc) => {
+          const p = doc.data();
+          return `
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; padding:14px 16px; border-radius:10px; margin-bottom:10px; gap:12px; flex-wrap:wrap;">
+              <div>
+                <strong style="color:var(--navy); font-size:.95rem;">${p.cliente}</strong>
+                <span style="color:var(--text-muted); font-size:.82rem;"> (${p.email || "sem e-mail"} • ${p.pagamento})</span><br>
+                <span style="font-size:.86rem; color:#334155;">${p.resumo} — <strong style="color:#15803d;">R$ ${formatPrice(p.valor)}</strong></span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button type="button" class="btn btn-outline btn-sm" style="color:#dc2626; border-color:#dc2626;" onclick="recusarPagamento('${doc.id}')">Recusar</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="liberarPagamento('${doc.id}')">Confirmar e Liberar Pedido</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      });
+
+    window.liberarPagamento = async function(id) {
+      try {
+        await db.collection("payment_approvals").doc(id).update({ status: "liberado" });
+        showToast("Pagamento liberado! O cliente já pode finalizar a compra.");
+      } catch (err) {
+        console.error(err);
+        showToast("Erro ao liberar pagamento.");
+      }
+    };
+
+    window.recusarPagamento = async function(id) {
+      try {
+        await db.collection("payment_approvals").doc(id).delete();
+        showToast("Solicitação removida.");
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    let CURRENT_ORDERS = [];
+    const orderState = { q: "", status: "" };
+
+    function isRecent(order) {
+      if (!order.createdAt || !order.createdAt.toDate) return false;
+      return Date.now() - order.createdAt.toDate().getTime() < 24 * 60 * 60 * 1000;
+    }
+
+    function renderRecentOrders() {
+      document.getElementById("recent-orders-table").innerHTML = `
+        <thead><tr><th>Pedido</th><th>Cliente</th><th>Produto(s)</th><th>Valor</th><th>Status</th></tr></thead>
+        <tbody>${CURRENT_ORDERS.slice(0, 5).map((o) => `
+          <tr>
+            <td><strong>#${o.docId.slice(-6).toUpperCase()}</strong> ${isRecent(o) ? '<span class="status-badge entregue" style="margin-left:6px;">Novo</span>' : ""}</td>
+            <td>${o.cliente}</td>
+            <td class="cell-product">${o.resumo || "—"}</td>
+            <td>R$ ${formatPrice(o.valor)}</td>
+            <td><span class="status-badge ${o.status}">${STATUS_LABELS[o.status] || o.status}</span></td>
+          </tr>
+        `).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:26px;">Nenhum pedido ainda.</td></tr>`}</tbody>
+      `;
+    }
+
+    function renderOrdersTable() {
+      const list = CURRENT_ORDERS.filter((o) =>
+        (o.cliente.toLowerCase().includes(orderState.q.toLowerCase()) || o.docId.toLowerCase().includes(orderState.q.toLowerCase()) || (o.resumo || "").toLowerCase().includes(orderState.q.toLowerCase()))
+        && (!orderState.status || o.status === orderState.status)
+      );
+      document.getElementById("orders-table").innerHTML = `
+        <thead><tr><th>Pedido</th><th>Cliente</th><th>Produto(s)</th><th>Data</th><th>Pagamento</th><th>Valor</th><th>Status</th></tr></thead>
+        <tbody>${list.map((o) => `
+          <tr>
+            <td><strong>#${o.docId.slice(-6).toUpperCase()}</strong> ${isRecent(o) ? '<span class="status-badge entregue" style="margin-left:6px;">Novo</span>' : ""}</td>
+            <td>${o.cliente}</td>
+            <td class="cell-product">${o.resumo || "—"}</td>
+            <td>${o.data}</td>
+            <td>${o.pagamento}</td>
+            <td>R$ ${formatPrice(o.valor)}</td>
+            <td>
+              <select class="pill-select" style="font-size:.72rem; padding:6px 10px;" data-status-select="${o.docId}">
+                ${Object.entries(STATUS_LABELS).map(([val, label]) => `<option value="${val}" ${o.status === val ? "selected" : ""}>${label}</option>`).join("")}
+              </select>
+            </td>
+          </tr>
+        `).join("") || `<tr><td colspan="7" style="text-align:center; color:var(--text-muted); padding:26px;">Nenhum pedido encontrado.</td></tr>`}</tbody>
+      `;
+      document.querySelectorAll("[data-status-select]").forEach((sel) => {
+        sel.addEventListener("change", async () => {
+          try {
+            await updateOrderStatus(sel.dataset.statusSelect, sel.value);
+            showToast("Status do pedido atualizado.");
+          } catch (err) {
+            console.error(err);
+            showToast("Não foi possível atualizar o status.");
+          }
+        });
+      });
+    }
+
+    function updateStats() {
+      const valid = CURRENT_ORDERS.filter((o) => o.status !== "cancelado" && o.status !== "aguardando");
+      const totalRevenue = valid.reduce((sum, o) => sum + (o.valor || 0), 0);
+      const totalOrders = valid.length;
+      const ordersToday = CURRENT_ORDERS.filter((o) => o.data === new Date().toLocaleDateString("pt-BR")).length;
+      document.getElementById("stat-revenue").textContent = "R$ " + formatPrice(totalRevenue);
+      document.getElementById("stat-orders").textContent = totalOrders;
+      document.getElementById("stat-orders-delta").textContent = totalOrders ? `${ordersToday} hoje` : "Nenhum pedido ainda";
+      document.getElementById("stat-ticket").textContent = "R$ " + formatPrice(totalOrders ? totalRevenue / totalOrders : 0);
+    }
+
+    document.getElementById("order-search").addEventListener("input", (e) => {
+      orderState.q = e.target.value;
+      renderOrdersTable();
+    });
+    document.querySelectorAll("#status-filters .filter-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll("#status-filters .filter-tab").forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        orderState.status = tab.dataset.status;
+        renderOrdersTable();
+      });
+    });
+
+    unsubOrders = onOrdersChange((orders) => {
+      CURRENT_ORDERS = orders;
+      renderRecentOrders();
+      renderOrdersTable();
+      updateStats();
+      renderWeeklyChart();
+    });
+
+    const manageState = { q: "", status: "" };
+    let currentImages = [];
+    let editingId = null;
+
+    function renderManageTable() {
+      const all = getAllProducts();
+      const activeCount = all.filter((p) => p.status === "ativo").length;
+      document.getElementById("stat-products").textContent = activeCount;
+      document.getElementById("stat-products-delta").textContent = all.length - activeCount > 0 ? `${all.length - activeCount} suspensa(s)` : "no catálogo";
+
+      if (all.length === 0) {
+        document.getElementById("manage-table").innerHTML = "";
+        document.getElementById("empty-catalog-card").style.display = "block";
+        renderStockTable();
+        renderLowStockList();
+        renderTopProducts();
+        return;
+      }
+
+      document.getElementById("empty-catalog-card").style.display = "none";
+      const list = all.filter((p) =>
+        p.name.toLowerCase().includes(manageState.q.toLowerCase()) && (!manageState.status || p.status === manageState.status)
+      );
+      document.getElementById("manage-table").innerHTML = `
+        <thead><tr><th>Foto</th><th>Produto</th><th>Categoria</th><th>Temporada</th><th>Tamanhos</th><th>Estoque</th><th>Status</th><th>Ações</th></tr></thead>
+        <tbody>${list.map((p) => `
+          <tr>
+            <td>${adminThumb(p)}</td>
+            <td>${p.name}</td>
+            <td>${CATEGORY_LABELS[p.category]}</td>
+            <td>${p.season || "—"}</td>
+            <td>${(p.sizes || []).join(", ")}</td>
+            <td>${p.stock} un.</td>
+            <td><span class="status-badge ${p.status}">${p.status === "ativo" ? "Ativa" : "Suspensa"}</span></td>
+            <td>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="btn btn-outline btn-sm" style="color:var(--navy); border-color:var(--navy);" data-edit="${p.id}">Editar</button>
+                <button class="btn btn-outline btn-sm" style="color:#96731a; border-color:#96731a;" data-toggle="${p.id}">${p.status === "ativo" ? "Suspender" : "Reativar"}</button>
+                <button class="btn btn-danger btn-sm" data-delete="${p.id}">Excluir</button>
+              </div>
+            </td>
+          </tr>
+        `).join("") || `<tr><td colspan="8" style="text-align:center; color:var(--text-muted); padding:26px;">Nenhuma camisa encontrada com esse filtro.</td></tr>`}</tbody>
+      `;
+      document.querySelectorAll("[data-edit]").forEach((btn) => btn.addEventListener("click", () => openEditModal(btn.dataset.edit)));
+      document.querySelectorAll("[data-toggle]").forEach((btn) => btn.addEventListener("click", () => toggleStatus(btn.dataset.toggle)));
+      document.querySelectorAll("[data-delete]").forEach((btn) => btn.addEventListener("click", () => openDeleteConfirm(btn.dataset.delete)));
+      renderStockTable();
+      renderLowStockList();
+      renderTopProducts();
+    }
+
+    document.getElementById("manage-search").addEventListener("input", (e) => {
+      manageState.q = e.target.value;
+      renderManageTable();
+    });
+    document.querySelectorAll("#manage-filters .filter-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll("#manage-filters .filter-tab").forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        manageState.status = tab.dataset.status;
+        renderManageTable();
+      });
+    });
+
+    document.getElementById("btn-import-seed")?.addEventListener("click", async (e) => {
+      e.target.disabled = true;
+      e.target.textContent = "Importando...";
+      try {
+        await importSeedCatalog();
+        showToast("Catálogo de exemplo importado!");
+      } catch (err) {
+        console.error(err);
+        showToast("Não foi possível importar. Confira as regras do Firestore.");
+        e.target.disabled = false;
+        e.target.textContent = "Importar catálogo de exemplo (28 camisas)";
+      }
+    });
+
+    async function toggleStatus(id) {
+      const p = getProductById(id);
+      if (!p) return;
+      try {
+        await setProductStatus(id, p.status === "ativo" ? "suspenso" : "ativo");
+        showToast(p.status === "ativo" ? "Camisa suspensa — some da loja, continua aqui." : "Camisa reativada — já aparece na loja.");
+      } catch (err) {
+        console.error(err);
+        showToast("Não foi possível atualizar. Tente de novo.");
+      }
+    }
+
+    const resetOverlay = document.getElementById("reset-modal-overlay");
+    document.getElementById("btn-reset-sales").addEventListener("click", () => resetOverlay.classList.add("show"));
+    document.getElementById("btn-cancel-reset").addEventListener("click", () => resetOverlay.classList.remove("show"));
+    document.getElementById("btn-confirm-reset").addEventListener("click", async (e) => {
+      const btn = e.target;
+      btn.disabled = true;
+      btn.textContent = "Apagando...";
+      try {
+        const snap = await db.collection("orders").get();
+        const ops = snap.docs.map((d) => (b) => b.delete(d.ref));
+        getAllProducts().forEach((p) => {
+          if ((p.sold || 0) > 0) ops.push((b) => b.update(db.collection("products").doc(p.id), { sold: 0 }));
+        });
+        for (let i = 0; i < ops.length; i += 400) {
+          const batch = db.batch();
+          ops.slice(i, i + 400).forEach((fn) => fn(batch));
+          await batch.commit();
+        }
+        showToast("Vendas zeradas.");
+        resetOverlay.classList.remove("show");
+      } catch (err) {
+        console.error(err);
+        showToast("Não foi possível zerar. Confira as regras do Firestore.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Zerar tudo";
+      }
+    });
+
+    let pendingDeleteId = null;
+    function openDeleteConfirm(id) {
+      const p = getProductById(id);
+      if (!p) return;
+      pendingDeleteId = id;
+      document.getElementById("confirm-product-name").textContent = p.name;
+      document.getElementById("confirm-modal-overlay").classList.add("show");
+    }
+    document.getElementById("btn-cancel-delete").addEventListener("click", () => {
+      document.getElementById("confirm-modal-overlay").classList.remove("show");
+      pendingDeleteId = null;
+    });
+    document.getElementById("btn-confirm-delete").addEventListener("click", async () => {
+      if (pendingDeleteId != null) {
+        try {
+          await deleteProductPermanently(pendingDeleteId);
+          showToast("Camisa excluída permanentemente.");
+        } catch (err) {
+          console.error(err);
+          showToast("Não foi possível excluir. Tente de novo.");
+        }
+      }
+      document.getElementById("confirm-modal-overlay").classList.remove("show");
+      pendingDeleteId = null;
+    });
+
+    const modalOverlay = document.getElementById("product-modal-overlay");
+    const productForm = document.getElementById("product-form");
+
+    function resetForm() {
+      editingId = null;
+      currentImages = [];
+      productForm.reset();
+      document.getElementById("pf-id").value = "";
+      document.querySelectorAll(".size-check input").forEach((c) => (c.checked = false));
+      renderImagePreviews();
+      document.getElementById("pf-size-error").classList.remove("show");
+      document.getElementById("pf-image-error").classList.remove("show");
+    }
+
+    function openAddModal() {
+      resetForm();
+      document.getElementById("modal-title").textContent = "Adicionar camisa";
+      document.getElementById("btn-save-product").textContent = "Salvar camisa";
+      modalOverlay.classList.add("show");
+    }
+
+    function openEditModal(id) {
+      const p = getProductById(id);
+      if (!p) return;
+      resetForm();
+      editingId = id;
+      document.getElementById("modal-title").textContent = "Editar camisa";
+      document.getElementById("btn-save-product").textContent = "Salvar alterações";
+      document.getElementById("pf-id").value = id;
+      document.getElementById("pf-name").value = p.name;
+      document.getElementById("pf-season").value = p.season || "";
+      document.getElementById("pf-category").value = p.category;
+      document.getElementById("pf-price").value = p.price;
+      document.getElementById("pf-stock").value = p.stock;
+      document.querySelectorAll(".size-check input").forEach((c) => (c.checked = (p.sizes || []).includes(c.value)));
+      currentImages = [...(p.images || [])];
+      renderImagePreviews();
+      modalOverlay.classList.add("show");
+    }
+
+    document.getElementById("btn-open-add").addEventListener("click", openAddModal);
+    document.getElementById("modal-close").addEventListener("click", () => modalOverlay.classList.remove("show"));
+    document.getElementById("btn-cancel-form").addEventListener("click", () => modalOverlay.classList.remove("show"));
+    modalOverlay.addEventListener("click", (e) => { if (e.target === modalOverlay) modalOverlay.classList.remove("show"); });
+
+    function resizeImage(file) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const maxW = 640;
+            const scale = Math.min(1, maxW / img.width);
+            const canvas = document.createElement("canvas");
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            resolve(canvas.toDataURL("image/jpeg", 0.72));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderImagePreviews() {
+      const grid = document.getElementById("image-preview-grid");
+      grid.innerHTML = currentImages.map((src, i) => `
+        <div class="image-preview">
+          <img src="${src}" alt="Foto ${i + 1}">
+          ${i === 0 ? '<span class="cover-tag">Capa</span>' : ""}
+          <button type="button" data-remove="${i}" aria-label="Remover foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      `).join("");
+      grid.querySelectorAll("[data-remove]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          currentImages.splice(Number(btn.dataset.remove), 1);
+          renderImagePreviews();
+        });
+      });
+    }
+
+    document.getElementById("pf-images").addEventListener("change", async (e) => {
+      const files = Array.from(e.target.files);
+      for (const file of files) {
+        const dataUrl = await resizeImage(file);
+        currentImages.push(dataUrl);
+      }
+      renderImagePreviews();
+      document.getElementById("pf-image-error").classList.remove("show");
+      e.target.value = "";
+    });
+
+    productForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const sizes = Array.from(document.querySelectorAll(".size-check input:checked")).map((c) => c.value);
+      document.getElementById("pf-size-error").classList.toggle("show", sizes.length === 0);
+      document.getElementById("pf-image-error").classList.toggle("show", currentImages.length < 4);
+      if (sizes.length === 0 || currentImages.length < 4) return;
+
+      const btnSave = document.getElementById("btn-save-product");
+      btnSave.disabled = true;
+      btnSave.textContent = "Salvando...";
+
+      const payload = {
+        name: document.getElementById("pf-name").value.trim(),
+        season: document.getElementById("pf-season").value.trim(),
+        category: document.getElementById("pf-category").value,
+        price: Number(document.getElementById("pf-price").value),
+        stock: Number(document.getElementById("pf-stock").value),
+        sizes,
+        images: currentImages
+      };
+
+      try {
+        if (editingId) {
+          await updateProduct(editingId, payload);
+          showToast("Camisa atualizada!");
+        } else {
+          await createProduct(payload);
+          showToast("Camisa cadastrada!");
+        }
+        modalOverlay.classList.remove("show");
+      } catch (err) {
+        console.error(err);
+        showToast("Erro ao salvar camisa. Tente novamente.");
+      } finally {
+        btnSave.disabled = false;
+        btnSave.textContent = editingId ? "Salvar alterações" : "Salvar camisa";
+      }
+    });
+
+    if (typeof onProductsChange === "function") {
+      onProductsChange(renderManageTable);
+    } else {
+      renderManageTable();
+    }
+  }
+</script>
+</body>
+</html>

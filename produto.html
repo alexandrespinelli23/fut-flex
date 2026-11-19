@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produto — FutFlex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="website icon" href="img/Logo.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img class="brand-logo" src="img/Logo.png" alt="FutFlex">
+      <span>FUT<em>FLEX</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="produtos.html">Produtos</a>
+      <a href="produtos.html?categoria=brasil">Brasil</a>
+      <a href="produtos.html?categoria=europa">Europa</a>
+      <a href="produtos.html?categoria=selecoes">Seleções</a>
+    </nav>
+    <div class="header-actions">
+      <a href="carrinho.html" class="icon-btn" aria-label="Carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <a href="login.html" class="icon-btn" id="account-link" aria-label="Minha conta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="burger" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <h1 id="crumb-name">Produto</h1>
+    <div class="crumbs"><a href="index.html">Início</a> / <a href="produtos.html">Produtos</a> / <span id="crumb-tail"></span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="product-detail">
+      <div class="gallery">
+        <div class="ph gallery-main" id="gallery-main" data-label="foto do produto"></div>
+        <div class="gallery-thumbs" id="gallery-thumbs"></div>
+      </div>
+
+      <div class="detail-panel">
+        <h1 id="product-name">Carregando...</h1>
+        <div class="detail-sub" id="product-tag"></div>
+        <div class="detail-price" id="product-price"></div>
+        <div class="detail-installments" id="product-installments"></div>
+
+        <div>
+          <label class="detail-sub" style="display:block; margin-bottom:10px;">TAMANHO</label>
+          <div class="size-row" id="size-row"></div>
+        </div>
+
+        <div class="qty-row">
+          <label class="detail-sub">QUANTIDADE</label>
+          <div class="qty-control">
+            <button type="button" id="qty-minus">−</button>
+            <span id="qty-value">1</span>
+            <button type="button" id="qty-plus">+</button>
+          </div>
+          <span class="detail-sub" id="stock-note"></span>
+        </div>
+
+        <p class="form-error" id="size-error">Selecione um tamanho antes de continuar.</p>
+
+        <div class="detail-actions">
+          <button class="btn btn-primary btn-block" id="btn-buy">Comprar</button>
+          <button class="btn btn-outline btn-block" id="btn-add-cart">Adicionar ao carrinho</button>
+        </div>
+        <p class="detail-note">Frete calculado no carrinho · Troca grátis em até 30 dias</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Você também pode gostar</h2>
+    <div class="carousel">
+      <button class="carousel-arrow prev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="navy-panel">
+        <div class="carousel-track" id="related-track"></div>
+      </div>
+      <button class="carousel-arrow next" aria-label="Próximo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/products.js"></script>
+<script src="js/script.js"></script>
+<script src="js/footer.js"></script>
+<script>
+  const idParam = new URLSearchParams(location.search).get("id");
+  let product = null;
+  let selectedSize = null;
+  let qty = 1;
+  let initialized = false;
+
+  onProductsChange((products) => {
+    const active = products.filter((p) => p.status === "ativo");
+    product = products.find((p) => p.id === idParam) || active[0];
+
+    if (!product) {
+      document.querySelector(".product-detail").innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:40px 0;">Nenhum produto disponível no momento.</p>`;
+      return;
+    }
+
+    if (!initialized) {
+      setupProductDetail();
+      initialized = true;
+    }
+    refreshDynamicFields();
+  });
+
+  function setupProductDetail() {
+    const galleryMain = document.getElementById("gallery-main");
+    const galleryThumbs = document.getElementById("gallery-thumbs");
+    const photos = product.images && product.images.length ? product.images : null;
+
+    function setMainImage(index) {
+      if (photos) {
+        galleryMain.classList.remove("ph");
+        galleryMain.removeAttribute("data-label");
+        galleryMain.innerHTML = `<img src="${photos[index]}" alt="${product.name}" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius-lg);">`;
+      }
+    }
+
+    if (photos) {
+      setMainImage(0);
+      galleryThumbs.innerHTML = photos.map((src, i) => `
+        <div class="ph gallery-thumb-img${i === 0 ? " active" : ""}" data-i="${i}" style="background-image:url('${src}'); background-size:cover; background-position:center;"></div>
+      `).join("");
+    } else {
+      galleryThumbs.innerHTML = [1, 2, 3, 4].map((n, i) => `<div class="ph${i === 0 ? " active" : ""}" data-label="${n}"></div>`).join("");
+    }
+
+    galleryThumbs.querySelectorAll(".ph").forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        galleryThumbs.querySelectorAll(".ph").forEach((t) => t.classList.remove("active"));
+        thumb.classList.add("active");
+        if (photos && thumb.dataset.i !== undefined) setMainImage(Number(thumb.dataset.i));
+      });
+    });
+
+    /* ---------- Tamanhos disponíveis ---------- */
+    const availableSizes = product.sizes && product.sizes.length ? product.sizes : SIZES;
+    document.getElementById("size-row").innerHTML = availableSizes.map((s) => `<button class="size-btn" data-size="${s}">${s}</button>`).join("");
+    document.querySelectorAll(".size-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".size-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedSize = btn.dataset.size;
+        document.getElementById("size-error").classList.remove("show");
+      });
+    });
+
+    /* ---------- Controle de quantidade ---------- */
+    document.getElementById("qty-minus").addEventListener("click", () => {
+      qty = Math.max(1, qty - 1);
+      document.getElementById("qty-value").textContent = qty;
+    });
+    document.getElementById("qty-plus").addEventListener("click", () => {
+      qty = Math.min(product.stock || 99, qty + 1);
+      document.getElementById("qty-value").textContent = qty;
+    });
+
+    function validateSize() {
+      if (!selectedSize) {
+        document.getElementById("size-error").classList.add("show");
+        return false;
+      }
+      return true;
+    }
+
+    /* ---------- Botões Comprar e Adicionar ao Carrinho ---------- */
+    document.getElementById("btn-add-cart").addEventListener("click", () => {
+      if (!validateSize()) return;
+      addToCart(product, selectedSize, qty);
+      showToast("Produto adicionado ao carrinho!");
+    });
+
+    document.getElementById("btn-buy").addEventListener("click", () => {
+      if (!validateSize()) return;
+      addToCart(product, selectedSize, qty);
+      location.href = "checkout.html";
+    });
+
+    const relatedTrack = document.getElementById("related-track");
+    if (relatedTrack) {
+      const related = getActiveProducts().filter((p) => p.category === product.category && p.id !== product.id).slice(0, 8);
+      relatedTrack.innerHTML = related.length
+        ? related.map(renderProductCard).join("")
+        : `<p style="color:#333;">Nenhum outro produto nessa categoria ainda.</p>`;
+    }
+  }
+
+  function refreshDynamicFields() {
+    document.getElementById("product-name").textContent = product.name;
+    const crumbTail = document.getElementById("crumb-tail");
+    if (crumbTail) crumbTail.textContent = product.name;
+
+    const seasonTxt = product.season ? `Temporada ${product.season} · ` : "";
+    document.getElementById("product-tag").textContent = seasonTxt + (product.tag ? product.tag + " · " : "") + CATEGORY_LABELS[product.category];
+    document.getElementById("product-price").innerHTML = `R$ ${formatPrice(product.price)}` + (product.oldPrice ? ` <span class="old" style="font-size:1rem;">R$ ${formatPrice(product.oldPrice)}</span>` : "");
+    document.getElementById("product-installments").textContent = `ou em até 10x de R$ ${formatPrice(product.price / 10)} sem juros`;
+
+    const inStock = product.stock > 0;
+    const stockNote = document.getElementById("stock-note");
+    const btnBuy = document.getElementById("btn-buy");
+    const btnAddCart = document.getElementById("btn-add-cart");
+    if (!inStock) {
+      stockNote.textContent = "Esgotado";
+      stockNote.style.color = "var(--danger)";
+      btnBuy.disabled = true;
+      btnAddCart.disabled = true;
+    } else if (product.stock <= 5) {
+      stockNote.textContent = `Só ${product.stock} em estoque`;
+      stockNote.style.color = "#ffb35c";
+      btnBuy.disabled = false;
+      btnAddCart.disabled = false;
+    } else {
+      stockNote.textContent = `${product.stock} em estoque`;
+      stockNote.style.color = "";
+      btnBuy.disabled = false;
+      btnAddCart.disabled = false;
+    }
+  }
+  
+
+</script>
+</body>
+</html>

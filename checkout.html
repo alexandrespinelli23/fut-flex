@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar Compra — FutFlex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="website icon" href="img/Logo.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img class="brand-logo" src="img/Logo.png" alt="FutFlex">
+      <span>FUT<em>FLEX</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="produtos.html">Produtos</a>
+      <a href="produtos.html?categoria=brasil">Brasil</a>
+      <a href="produtos.html?categoria=europa">Europa</a>
+      <a href="produtos.html?categoria=selecoes">Seleções</a>
+    </nav>
+    <div class="header-actions">
+      <a href="carrinho.html" class="icon-btn" aria-label="Carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <a href="login.html" class="icon-btn" id="account-link" aria-label="Minha conta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="burger" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width:980px;">
+
+    <div class="steps">
+      <div class="step active" id="step-1">
+        <div class="step-dot">1</div>
+        <div class="step-label">Pagamento</div>
+      </div>
+      <div class="step" id="step-2">
+        <div class="step-dot">2</div>
+        <div class="step-label">Confirmação do pedido</div>
+      </div>
+      <div class="step" id="step-3">
+        <div class="step-dot">3</div>
+        <div class="step-label">Entrega do pedido</div>
+      </div>
+    </div>
+
+      <div id="view-payment">
+      <div class="navy-panel checkout-grid">
+        <div>
+          <div class="section-header-icon">
+            <div class="icon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8Z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div>
+              <h3>Dados para entrega</h3>
+              <p class="section-subtitle">Confira o endereço antes de finalizar</p>
+            </div>
+          </div>
+
+          <div class="delivery-card">
+            <div class="card-form show">
+              <div class="field full">
+                <label>Nome completo</label>
+                <input type="text" id="customer-name" placeholder="Como devemos te chamar?" required>
+              </div>
+              <div class="field">
+                <label>E-mail</label>
+                <input type="email" id="customer-email" placeholder="seuemail@exemplo.com">
+              </div>
+              <div class="field">
+                <label>Telefone</label>
+                <input type="text" id="customer-phone" placeholder="(00) 00000-0000" inputmode="numeric" maxlength="15">
+              </div>
+              <div class="field full">
+                <label>Endereço</label>
+                <input type="text" id="customer-address" placeholder="Rua, avenida...">
+              </div>
+              <div class="field">
+                <label>Número</label>
+                <input type="text" id="customer-number" placeholder="Nº">
+              </div>
+              <div class="field">
+                <label>Bairro</label>
+                <input type="text" id="customer-district" placeholder="Seu bairro">
+              </div>
+              <div class="field">
+                <label>Cidade</label>
+                <input type="text" id="customer-city" placeholder="Sua cidade">
+              </div>
+              <div class="field">
+                <label>CEP</label>
+                <input type="text" id="customer-cep" placeholder="00000-000" inputmode="numeric" maxlength="9">
+              </div>
+            </div>
+            <div class="delivery-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              Frete grátis para pedidos acima de R$ 250 · Entrega em até 7 dias úteis
+            </div>
+          </div>
+          <p class="form-error" id="name-error">Preencha seu nome para continuar.</p>
+
+          <h3 style="color:#fff; margin-bottom:16px;">Formas de pagamento</h3>
+          <div class="pay-methods">
+            <label class="pay-method selected" data-method="cartao">
+              <input type="radio" name="pay" value="cartao" checked>
+              <img class="pm-icon" src="img/cart%C3%A3odecredito.png" alt="">
+              <span>Cartão de crédito — 10x sem juros</span>
+            </label>
+            <label class="pay-method" data-method="pix">
+              <input type="radio" name="pay" value="pix">
+              <img class="pm-icon" src="img/pix.png" alt="">
+              <span>Pix — à vista com 5% de desconto</span>
+            </label>
+            <label class="pay-method" data-method="boleto">
+              <input type="radio" name="pay" value="boleto">
+              <img class="pm-icon" src="img/boleto-bancario-0x0.png" alt="">
+              <span>Boleto bancário</span>
+            </label>
+          </div>
+
+          <div class="card-form show" id="card-form">
+            <div class="field full">
+              <label>Nome no cartão</label>
+              <input type="text" placeholder="Como está impresso no cartão" required>
+            </div>
+            <div class="field full">
+              <label>Número do cartão</label>
+              <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" required>
+            </div>
+            <div class="field">
+              <label>Validade</label>
+              <input type="text" placeholder="MM/AA" maxlength="5" required>
+            </div>
+            <div class="field">
+              <label>CVV</label>
+              <input type="text" placeholder="000" maxlength="4" required>
+            </div>
+          </div>
+
+          <div class="pix-qr-box" id="pix-qr">
+            <img src="img/qrcode.png" alt="QR Code Pix" style="width: 220px; height: 220px; object-fit: contain; border-radius: 12px; background: #fff; padding: 10px; margin: 0 auto 14px; display: block;">
+            <p>Escaneie o QR Code com o app do seu banco para pagar</p>
+            <div class="pix-code">
+              <span id="pix-code-text">00020126360014BR.GOV.BCB.PIX...FutFlex</span>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-copy-pix">Copiar</button>
+            </div>
+            <p style="margin-top:10px; color:#9db3cf;">O código expira em 30 minutos.</p>
+          </div>
+          <div id="boleto-note" class="boleto-box">
+            <div class="barcode"></div>
+            <div class="pix-code">
+              <span id="boleto-code-text">34191.79001 01043.510047 91020.150008 1 98650000029999</span>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-copy-boleto">Copiar</button>
+            </div>
+            <p>O boleto vence em 3 dias úteis e leva até 2 dias para compensar após o pagamento.</p>
+          </div>
+        </div>
+
+        <div class="order-summary">
+          <h3>Resumo do pedido</h3>
+          <div id="order-lines"></div>
+          <div class="order-line total">
+            <span>Total</span>
+            <span id="order-total">R$ 0,00</span>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" style="margin-top:20px; background:#f59e0b; color:#07192e;" id="btn-send-payment" disabled>
+            Enviar pagamento
+          </button>
+          <p id="payment-wait-msg" style="display:none; color:#f59e0b; font-size:0.9rem; text-align:center; margin-top:10px; font-weight:600;">
+            Pagamento enviado! Aguardando o dono confirmar e liberar...
+          </p>
+
+          
+        </div>
+      </div>
+    </div>
+
+    <div id="view-confirm" style="display:none;">
+      <div class="navy-panel confirm-box">
+        <img class="status-icon" src="img/compra.finalizada.png" alt="">
+        <h2 style="color:#fff;">Pedido confirmado!</h2>
+        <p style="margin-bottom:6px;">Número do pedido: <strong style="color:var(--green);" id="confirm-order-id">—</strong></p>
+        <p>Recebemos seu pagamento e já estamos preparando o seu pedido. Você receberá atualizações por e-mail sobre o status da entrega.</p>
+        <a href="index.html" class="btn btn-primary">Voltar para a loja</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/products.js"></script>
+<script src="js/script.js"></script>
+<script src="js/footer.js"></script>
+<script>
+  const cart = getCart();
+  if (cart.length === 0) {
+    document.getElementById("view-payment").innerHTML = `
+      <div class="navy-panel confirm-box">
+        <img class="status-icon" src="img/126510.png" alt="">
+        <h2 style="color:#fff;">Seu carrinho está vazio</h2>
+        <p>Adicione produtos antes de finalizar a compra.</p>
+        <a href="produtos.html" class="btn btn-primary">Ver produtos</a>
+      </div>`;
+  } else {
+    document.getElementById("order-lines").innerHTML = cart.map((item) => `
+      <div class="order-line">
+        <span>${item.qty}x ${item.name} (${item.size})</span>
+        <span>R$ ${formatPrice(item.price * item.qty)}</span>
+      </div>
+    `).join("");
+    document.getElementById("order-total").textContent = "R$ " + formatPrice(cartTotalValue());
+  }
+
+  attachMask(document.getElementById("customer-phone"), maskPhoneBR);
+  attachMask(document.getElementById("customer-cep"), maskCEP);
+
+  const PAYMENT_LABELS = { cartao: "Cartão", pix: "Pix", boleto: "Boleto" };
+  let currentPaymentMethod = "cartao";
+
+  const deliveryInputs = document.querySelectorAll(".delivery-card input");
+  const cardInputs = document.querySelectorAll("#card-form input");
+  const btnSendPayment = document.getElementById("btn-send-payment");
+  const btnFinish = document.getElementById("btn-finish");
+  const waitMsg = document.getElementById("payment-wait-msg");
+
+  let paymentSent = false;
+  let paymentApproved = false;
+
+  function validateCheckoutForm() {
+    const deliveryOk = Array.from(deliveryInputs).every((inp) => inp.value.trim() !== "");
+    const cardOk = currentPaymentMethod !== "cartao" || Array.from(cardInputs).every((inp) => inp.value.trim() !== "");
+    const formReady = deliveryOk && cardOk;
+
+    if (btnSendPayment) {
+      const canSend = formReady && !paymentSent;
+      btnSendPayment.disabled = !canSend;
+      btnSendPayment.style.opacity = canSend ? "1" : "0.5";
+      btnSendPayment.style.cursor = canSend ? "pointer" : "not-allowed";
+    }
+
+    if (btnFinish) {
+      const canFinish = formReady && paymentApproved;
+      btnFinish.disabled = !canFinish;
+      btnFinish.style.opacity = canFinish ? "1" : "0.5";
+      btnFinish.style.cursor = canFinish ? "pointer" : "not-allowed";
+    }
+  }
+
+  [...deliveryInputs, ...cardInputs].forEach((inp) => {
+    inp.addEventListener("input", validateCheckoutForm);
+    inp.addEventListener("change", validateCheckoutForm);
+  });
+
+  document.querySelectorAll(".pay-method").forEach((label) => {
+    label.addEventListener("click", () => {
+      document.querySelectorAll(".pay-method").forEach((l) => l.classList.remove("selected"));
+      label.classList.add("selected");
+      const method = label.dataset.method;
+      currentPaymentMethod = method;
+      document.getElementById("card-form").classList.toggle("show", method === "cartao");
+      document.getElementById("pix-qr").classList.toggle("show", method === "pix");
+      document.getElementById("boleto-note").classList.toggle("show", method === "boleto");
+      validateCheckoutForm();
+    });
+  });
+
+  validateCheckoutForm();
+
+ /* ---------- Envia pagamento e já registra o pedido para o dono liberar ---------- */
+  btnSendPayment?.addEventListener("click", async () => {
+    const nameInput = document.getElementById("customer-name");
+    const nameError = document.getElementById("name-error");
+    if (!nameInput.value.trim()) {
+      nameError.classList.add("show");
+      nameInput.focus();
+      return;
+    }
+    nameError.classList.remove("show");
+
+    paymentSent = true;
+    btnSendPayment.textContent = "Enviando pagamento...";
+    validateCheckoutForm();
+
+    const itemsSummary = cart.map((i) => `${i.qty}x ${i.name} (${i.size})`).join(", ");
+
+    const order = {
+      uid: auth.currentUser ? auth.currentUser.uid : null,
+      cliente: nameInput.value.trim(),
+      email: document.getElementById("customer-email").value.trim(),
+      telefone: document.getElementById("customer-phone").value.trim(),
+      endereco: [
+        document.getElementById("customer-address").value.trim(),
+        document.getElementById("customer-number").value.trim(),
+      ].filter(Boolean).join(", "),
+      bairro: document.getElementById("customer-district").value.trim(),
+      cidade: document.getElementById("customer-city").value.trim(),
+      cep: document.getElementById("customer-cep").value.trim(),
+      data: new Date().toLocaleDateString("pt-BR"),
+      itens: cart.reduce((sum, i) => sum + i.qty, 0),
+      valor: cartTotalValue(),
+      status: "aguardando",
+      pagamento: PAYMENT_LABELS[currentPaymentMethod] || "Cartão",
+      resumo: itemsSummary,
+      itensDetalhe: cart.map((i) => ({ id: i.id, name: i.name, size: i.size, qty: i.qty, price: i.price })),
+    };
+
+    try {
+      await saveOrder(order);
+      clearCart();
+      if (typeof showPaymentSentPopup === "function") {
+        showPaymentSentPopup();
+      } else {
+        showToast("Pagamento enviado! Aguardando o dono liberar.");
+        setTimeout(() => location.href = "index.html", 1500);
+      }
+    } catch (err) {
+      console.error(err);
+      paymentSent = false;
+      btnSendPayment.textContent = "Enviar pagamento";
+      validateCheckoutForm();
+      showToast("Erro ao enviar pagamento. Tente novamente.");
+    }
+  });
+
+  document.getElementById("btn-copy-pix")?.addEventListener("click", () => {
+    const text = document.getElementById("pix-code-text").textContent;
+    navigator.clipboard?.writeText(text).catch(() => {});
+    showToast("Código Pix copiado!");
+  });
+
+  document.getElementById("btn-copy-boleto")?.addEventListener("click", () => {
+    const text = document.getElementById("boleto-code-text").textContent;
+    navigator.clipboard?.writeText(text).catch(() => {});
+    showToast("Código de barras copiado!");
+  });
+
+  auth.onAuthStateChanged((user) => {
+    if (!user) {
+      showAuthPopup("Você precisa entrar na sua conta para finalizar a compra.");
+      return;
+    }
+    if (document.getElementById("customer-email")) {
+      document.getElementById("customer-email").value = user.email || "";
+    }
+    if (user.displayName && document.getElementById("customer-name") && !document.getElementById("customer-name").value) {
+      document.getElementById("customer-name").value = user.displayName;
+    }
+    validateCheckoutForm();
+  });
+
+  btnFinish?.addEventListener("click", async () => {
+    const nameInput = document.getElementById("customer-name");
+    const nameError = document.getElementById("name-error");
+    if (!nameInput.value.trim()) {
+      nameError.classList.add("show");
+      nameInput.focus();
+      return;
+    }
+    nameError.classList.remove("show");
+
+    const itemsSummary = cart.map((i) => `${i.qty}x ${i.name} (${i.size})`).join(", ");
+    btnFinish.disabled = true;
+    btnFinish.textContent = "Processando...";
+
+    const order = {
+      uid: auth.currentUser ? auth.currentUser.uid : null,
+      cliente: nameInput.value.trim(),
+      email: document.getElementById("customer-email").value.trim(),
+      telefone: document.getElementById("customer-phone").value.trim(),
+      endereco: [
+        document.getElementById("customer-address").value.trim(),
+        document.getElementById("customer-number").value.trim(),
+      ].filter(Boolean).join(", "),
+      bairro: document.getElementById("customer-district").value.trim(),
+      cidade: document.getElementById("customer-city").value.trim(),
+      cep: document.getElementById("customer-cep").value.trim(),
+      data: new Date().toLocaleDateString("pt-BR"),
+      itens: cart.reduce((sum, i) => sum + i.qty, 0),
+      valor: cartTotalValue(),
+      status: "processando",
+      pagamento: PAYMENT_LABELS[currentPaymentMethod] || "Cartão",
+      resumo: itemsSummary,
+      itensDetalhe: cart.map((i) => ({ id: i.id, name: i.name, size: i.size, qty: i.qty, price: i.price })),
+    };
+
+    try {
+      const orderNumber = await saveOrder(order);
+
+      document.getElementById("step-1").classList.add("done");
+      document.getElementById("step-1").classList.remove("active");
+      document.getElementById("step-2").classList.add("active", "done");
+      document.getElementById("step-3").classList.add("active");
+      document.getElementById("view-payment").style.display = "none";
+      document.getElementById("view-confirm").style.display = "block";
+      document.getElementById("confirm-order-id").textContent = orderNumber;
+      clearCart();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      console.error(err);
+      showToast("Não foi possível finalizar. Verifique sua conexão e tente de novo.");
+      btnFinish.disabled = false;
+      btnFinish.textContent = "Finalizar compra";
+    }
+  });
+
+  /* ---------- Envia pagamento para aprovação do dono ---------- */
+  btnSendPayment?.addEventListener("click", async () => {
+    paymentSent = true;
+    btnSendPayment.textContent = "Aguardando aprovação...";
+    if (waitMsg) waitMsg.style.display = "block";
+    validateCheckoutForm();
+
+    try {
+      const docRef = await firebase.firestore().collection("payment_approvals").add({
+        uid: auth.currentUser ? auth.currentUser.uid : null,
+        cliente: document.getElementById("customer-name").value.trim(),
+        email: document.getElementById("customer-email").value.trim(),
+        pagamento: PAYMENT_LABELS[currentPaymentMethod] || "Cartão",
+        valor: cartTotalValue(),
+        resumo: cart.map((i) => `${i.qty}x ${i.name} (${i.size})`).join(", "),
+        status: "aguardando",
+        criadoEm: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+      // Abre o pop-up com o botão que leva para a Home (index.html)
+      showPaymentSentPopup();
+
+      docRef.onSnapshot((snap) => {
+        const data = snap.data();
+        if (data && data.status === "liberado") {
+          paymentApproved = true;
+          btnSendPayment.textContent = "Pagamento aprovado ✓";
+          btnSendPayment.style.background = "#1e3a5f";
+          btnSendPayment.style.color = "#7cd42a";
+          if (waitMsg) {
+            waitMsg.textContent = "✅ Pagamento confirmado pelo dono! Clique em Finalizar compra.";
+            waitMsg.style.color = "#7cd42a";
+          }
+          validateCheckoutForm();
+          showToast("Pagamento aprovado! Agora você já pode finalizar a compra.");
+        }
+      });
+    } catch (err) {
+      console.error(err);
+      paymentSent = false;
+      btnSendPayment.textContent = "Enviar pagamento";
+      if (waitMsg) waitMsg.style.display = "none";
+      validateCheckoutForm();
+      showToast("Erro ao enviar pagamento. Tente novamente.");
+    }
+  });
+</script>
+</body>
+</html>

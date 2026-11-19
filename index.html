@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FutFlex — Camisas de Futebol Originais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="website icon" href="img/Logo.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img class="brand-logo" src="img/Logo.png" alt="FutFlex">
+      <span>FUT<em>FLEX</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="produtos.html">Produtos</a>
+      <a href="produtos.html?categoria=brasil">Brasil</a>
+      <a href="produtos.html?categoria=europa">Europa</a>
+      <a href="produtos.html?categoria=selecoes">Seleções</a>
+    </nav>
+    <div class="header-actions">
+      <a href="carrinho.html" class="icon-btn" aria-label="Carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <a href="login.html" class="icon-btn" id="account-link" aria-label="Minha conta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="burger" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="section" style="padding-top:32px;">
+  <div class="container">
+    <div class="hero-slider" id="hero-slider">
+      <div class="hero-slide active"><img src="img/BANNER NOVO.jpeg" alt="Banner FutFlex"></div>
+    </div>
+    <div class="hero-dots" id="hero-dots"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Categorias</h2>
+    <div class="carousel">
+      <div class="navy-panel">
+        <div class="carousel-track" id="category-track"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Lançamentos</h2>
+    <div class="carousel">
+      <div class="navy-panel">
+        <div class="carousel-track" id="launch-track"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIS VENDIDOS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Mais Vendidos</h2>
+    <div class="carousel">
+      <button class="carousel-arrow prev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="navy-panel">
+        <div class="carousel-track" id="best-track"></div>
+      </div>
+      <button class="carousel-arrow next" aria-label="Próximo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Feedbacks</h2>
+    <div class="carousel">
+      <button class="carousel-arrow prev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      
+      <div class="carousel-track">
+        <!-- Cards estáticos -->
+        <div class="feedback-card">
+          <div class="feedback-head">
+            <img class="avatar" src="img/foto.perfil.jpg" alt="">
+            <div>
+              <div class="feedback-name">Cristiano Reinaldo</div>
+              <div class="stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="feedback-text">Gostei bastante da experiência no site, principalmente da organização dos produtos. Achei fácil encontrar as camisas e o visual é bem agradável. O processo de compra também é simples e rápido, o que ajuda bastante.</p>
+        </div>
+
+        <div class="feedback-card">
+          <div class="feedback-head">
+            <img class="avatar" src="img/foto.perfil.jpg" alt="">
+            <div>
+              <div class="feedback-name">Wilson Silva</div>
+              <div class="stars">★★★★☆</div>
+            </div>
+          </div>
+          <p class="feedback-text">O site é bonito e fácil de usar, mas ainda parece um pouco incompleto em algumas partes. Na página de produto, por exemplo, faltam detalhes como descrição e avaliações mais completas.</p>
+        </div>
+
+        <div class="feedback-card">
+          <div class="feedback-head">
+            <img class="avatar" src="img/foto.perfil.jpg" alt="">
+            <div>
+              <div class="feedback-name">Marina Alves</div>
+              <div class="stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="feedback-text">Comprei duas camisas retrô e a entrega foi rápida. Recomendo para quem procura variedade de times europeus e nacionais em um só lugar.</p>
+        </div>
+
+        <div class="feedback-card">
+          <div class="feedback-head">
+            <img class="avatar" src="img/foto.perfil.jpg" alt="">
+            <div>
+              <div class="feedback-name">Bruno Tavares</div>
+              <div class="stars">★★★★☆</div>
+            </div>
+          </div>
+          <p class="feedback-text">As camisas retrô têm uma qualidade impressionante pelo preço. O único ponto é que o prazo de entrega para o Nordeste poderia ser mais rápido.</p>
+        </div>
+
+        <div class="feedback-card">
+          <div class="feedback-head">
+            <img class="avatar" src="img/foto.perfil.jpg" alt="">
+            <div>
+              <div class="feedback-name">Fernanda Costa</div>
+              <div class="stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="feedback-text">Comprei de presente pro meu marido e ele amou. O tecido é ótimo e o tamanho bateu certinho com a tabela de medidas do site.</p>
+        </div>
+
+        <div class="feedback-card">
+          <div class="feedback-head">
+            <img class="avatar" src="img/foto.perfil.jpg" alt="">
+            <div>
+              <div class="feedback-name">Rodrigo Nunes</div>
+              <div class="stars">★★★★☆</div>
+            </div>
+          </div>
+          <p class="feedback-text">Ótimo custo-benefício e catálogo bem variado. Só senti falta de mais opções de frete expresso na hora de finalizar a compra.</p>
+        </div>
+
+        <div class="feedback-card">
+          <div class="feedback-head">
+            <img class="avatar" src="img/foto.perfil.jpg" alt="">
+            <div>
+              <div class="feedback-name">Juliana Prado</div>
+              <div class="stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="feedback-text">Já é a terceira vez que compro aqui. Atendimento rápido pelo chat e as camisas retrô têm um acabamento surpreendentemente bom.</p>
+        </div>
+      </div>
+
+      <button class="carousel-arrow next" aria-label="Próximo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- Botão para abrir o modal de feedback -->
+    <div style="text-align: center; margin-top: 28px;">
+      <button id="btn-open-feedback" class="btn btn-primary">Deixar um Feedback</button>
+    </div>
+  </div>
+</section>
+
+<!-- Modal de Feedback -->
+<div class="modal-overlay" id="feedback-modal">
+  <div class="modal-box modal-box-sm">
+    <div class="modal-head">
+      <h3>Deixar um Feedback</h3>
+      <button class="modal-close" id="btn-close-feedback" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <form id="feedback-form">
+      <div class="field" style="margin-bottom: 16px;">
+        <label style="color: var(--text-muted);">Sua Nota</label>
+        <div class="star-rating-picker" id="star-picker">
+          <span class="star active" data-value="1">★</span>
+          <span class="star active" data-value="2">★</span>
+          <span class="star active" data-value="3">★</span>
+          <span class="star active" data-value="4">★</span>
+          <span class="star active" data-value="5">★</span>
+        </div>
+        <input type="hidden" id="feedback-rating" value="5">
+      </div>
+
+      <div class="field" style="margin-bottom: 20px;">
+        <label style="color: var(--text-muted);" for="feedback-message">Seu Comentário</label>
+        <textarea id="feedback-message" rows="4" required placeholder="Conte como foi sua experiência na FutFlex..." style="width: 100%; border: 1px solid #cfd9e6; border-radius: 8px; padding: 12px; font-family: inherit; font-size: 0.95rem; resize: vertical;"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-primary btn-block">Enviar Feedback</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/products.js"></script>
+<script src="js/script.js"></script>
+<script src="js/footer.js"></script>
+<script>
+  const CATEGORY_IMAGES = {
+    brasil: "img/mapa.se%C3%A7%C3%A3o.brasil.png",
+    europa: "img/mapa.se%C3%A7%C3%A3o.europa.avif",
+    selecoes: "img/images.png",
+  };
+
+  document.getElementById("category-track").innerHTML = Object.entries(CATEGORY_LABELS).map(([key, label]) => `
+    <div class="category-card">
+      <a href="produtos.html?categoria=${key}">
+        ${CATEGORY_IMAGES[key] ? `<div class="cat-img"><img src="${CATEGORY_IMAGES[key]}" alt="${label}"></div>` : `<div class="ph" data-label="${label}"></div>`}
+        <p>${label}</p>
+      </a>
+    </div>
+  `).join("");
+
+  document.getElementById("launch-track").innerHTML = `<p style="color:#9db3cf; font-size:.85rem;">Carregando...</p>`;
+  document.getElementById("best-track").innerHTML = `<p style="color:#9db3cf; font-size:.85rem;">Carregando...</p>`;
+
+  onProductsChange((products) => {
+    const active = products.filter((p) => p.status === "ativo");
+    const addedAt = (p) => (p.createdAt && p.createdAt.toMillis ? p.createdAt.toMillis() : Date.now());
+
+    const launches = [...active].sort((a, b) => addedAt(b) - addedAt(a)).slice(0, 10);
+    const bestsellers = active.filter((p) => (p.sold || 0) > 0).sort((a, b) => (b.sold || 0) - (a.sold || 0)).slice(0, 10);
+
+    document.getElementById("launch-track").innerHTML = launches.length
+      ? launches.map(renderProductCard).join("")
+      : `<p style="color:#9db3cf; font-size:.9rem;">Nenhuma camisa cadastrada ainda.</p>`;
+    document.getElementById("best-track").innerHTML = bestsellers.length
+      ? bestsellers.map(renderProductCard).join("")
+      : `<p style="color:#9db3cf; font-size:.9rem;">Ainda sem vendas. As mais vendidas aparecem aqui assim que saírem os primeiros pedidos.</p>`;
+  });
+
+  (function () {
+    const slider = document.getElementById("hero-slider");
+    const slides = Array.from(slider.querySelectorAll(".hero-slide"));
+    const dotsWrap = document.getElementById("hero-dots");
+    let current = 0;
+    let timer;
+
+    if (slides.length < 2) {
+      dotsWrap.style.display = "none";
+      return;
+    }
+
+    dotsWrap.innerHTML = slides.map((_, i) => `<button class="hero-dot${i === 0 ? " active" : ""}" data-i="${i}" aria-label="Ir para slide ${i + 1}"></button>`).join("");
+    const dots = Array.from(dotsWrap.querySelectorAll(".hero-dot"));
+
+    function goTo(index) {
+      slides[current].classList.remove("active");
+      dots[current].classList.remove("active");
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add("active");
+      dots[current].classList.add("active");
+    }
+
+    function next() { goTo(current + 1); }
+
+    function startAutoplay() {
+      clearInterval(timer);
+      timer = setInterval(next, 4000);
+    }
+
+    dots.forEach((dot) => dot.addEventListener("click", () => { goTo(Number(dot.dataset.i)); startAutoplay(); }));
+    slider.addEventListener("mouseenter", () => clearInterval(timer));
+    slider.addEventListener("mouseleave", startAutoplay);
+
+    startAutoplay();
+  })();
+</script>
+</body>
+</html>
