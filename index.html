@@ -40,10 +40,9 @@
 
 <section class="section" style="padding-top:32px;">
   <div class="container">
-    <div class="hero-slider" id="hero-slider">
-      <div class="hero-slide active"><img src="img/BANNER NOVO.jpeg" alt="Banner FutFlex"></div>
+    <div class="hero-banner" style="width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+      <img src="img/BANNER NOVO.jpeg" alt="Banner FutFlex" style="width: 100%; height: auto; max-height: 400px; object-fit: cover; display: block;">
     </div>
-    <div class="hero-dots" id="hero-dots"></div>
   </div>
 </section>
 
@@ -233,19 +232,11 @@
 <script src="js/footer.js"></script>
 <script>
   const CATEGORY_IMAGES = {
-    brasil: "img/mapa.se%C3%A7%C3%A3o.brasil.png",
-    europa: "img/mapa.se%C3%A7%C3%A3o.europa.avif",
+    brasil: "img/logobrasileiro.jfif",
+    europa: "img/logochampions.png",
     selecoes: "img/images.png",
   };
 
-  document.getElementById("category-track").innerHTML = Object.entries(CATEGORY_LABELS).map(([key, label]) => `
-    <div class="category-card">
-      <a href="produtos.html?categoria=${key}">
-        ${CATEGORY_IMAGES[key] ? `<div class="cat-img"><img src="${CATEGORY_IMAGES[key]}" alt="${label}"></div>` : `<div class="ph" data-label="${label}"></div>`}
-        <p>${label}</p>
-      </a>
-    </div>
-  `).join("");
 
   document.getElementById("launch-track").innerHTML = `<p style="color:#9db3cf; font-size:.85rem;">Carregando...</p>`;
   document.getElementById("best-track").innerHTML = `<p style="color:#9db3cf; font-size:.85rem;">Carregando...</p>`;
@@ -267,7 +258,7 @@
 
   (function () {
     const slider = document.getElementById("hero-slider");
-    const slides = Array.from(slider.querySelectorAll(".hero-slide"));
+    
     const dotsWrap = document.getElementById("hero-dots");
     let current = 0;
     let timer;

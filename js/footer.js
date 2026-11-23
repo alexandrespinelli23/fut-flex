@@ -13,11 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <p style="color: #bbb; font-size: 0.9rem; max-width: 400px; margin: 0 auto 15px auto;">
             Camisas de futebol de clubes europeus, clubes brasileiros e seleções, incluindo modelos retrô.
           </p>
-          <div class="footer-social" style="display: flex; justify-content: center; gap: 15px;">
-            <a href="#" class="social-icon" aria-label="Instagram"><img src="img/instagram.png" alt="Instagram" style="width: 24px; height: 24px;"></a>
-            <a href="#" class="social-icon" aria-label="Facebook"><img src="img/facebook.png" alt="Facebook" style="width: 24px; height: 24px;"></a>
-            <a href="#" class="social-icon" aria-label="X (Twitter)"><img src="img/twitter.webp" alt="X" style="width: 24px; height: 24px;"></a>
-          </div>
         </div>
       </div>
       <div class="footer-bottom" style="text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 15px; color: #999; font-size: 0.85rem;">

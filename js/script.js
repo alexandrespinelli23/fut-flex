@@ -131,24 +131,42 @@ const CATEGORIES_DATA = [
   { name: "Seleções", image: "img/images.png", link: "produtos.html?categoria=selecoes"}
 ];
 
-
-
-
 function renderCategories() {
   const track = document.getElementById("category-track");
   if (!track) return;
   
   track.innerHTML = CATEGORIES_DATA.map(cat => `
     <a href="${cat.link}" class="category-card">
-      <img src="${cat.image}" alt="${cat.name}">
+      <div class="ph" style="background:#fff; padding:0; overflow:hidden;">
+        <img src="${cat.image}" alt="${cat.name}" style="width:100%; height:190px; object-fit:contain; display:block;">
+      </div>
       <h3>${cat.name}</h3>
     </a>
   `).join("");
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
   renderCategories();
+
+  const burger = document.querySelector(".burger");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (burger && navLinks) {
+    burger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle("nav-open");
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => navLinks.classList.remove("nav-open"));
+    });
+
+    document.addEventListener("click", (e) => {
+      if (navLinks.classList.contains("nav-open") && !navLinks.contains(e.target) && e.target !== burger) {
+        navLinks.classList.remove("nav-open");
+      }
+    });
+  }
 });
 
 function initCarousels() {
